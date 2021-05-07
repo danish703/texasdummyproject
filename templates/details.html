@@ -1,0 +1,23 @@
+{% extends 'master/master.html' %}
+
+{% block 'title' %}
+  {{blog.title}}
+{% endblock %}
+
+
+{% block 'content' %}
+ <div class="container">
+   <div class="row justify-content-md-center">
+
+  <div class="col-10" style="margin-top:10px;">
+    <div class="card">
+    <img src="{{MEDIA_URL}}{{blog.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{blog.title}}</h5>
+      <p class="card-text">{{blog.description}}</p>
+    </div>
+  </div>
+  </div>
+ </div>
+</div>
+{% endblock %}

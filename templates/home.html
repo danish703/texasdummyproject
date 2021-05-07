@@ -1,0 +1,42 @@
+{% extends 'master/master.html' %}
+
+{% block 'title' %}
+ Home page
+{% endblock %}
+
+
+{% block 'content' %}
+ <div class="container">
+   <ul style="list-style:none;position:relative;right:10px;">
+      <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+           <li><a class="dropdown-item" href="{% url 'home' %}">All</a></li>
+           {% for c in cat %}
+            <li><a class="dropdown-item" href="{% url 'home' %}?cat={{c.id}}">{{c.title}}</a></li>
+           {% endfor %}
+          </ul>
+        </li>
+    </ul>
+   <div class="row justify-content-md-center">
+{% for b in blog  %}
+  <div class="col-8" style="margin-top:10px;">
+    <div class="card">
+    <img src="{{MEDIA_URL}}{{b.image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{b.title}}</h5>
+     <span>{{b.postedDate}}</span>
+     <hr/>
+      <p class="card-text">{{b.description|truncatewords:20}}</p>
+      <a href="{% url 'details' b.id %}" class="btn btn-primary">Read more</a>
+     <a href="{% url 'delete' b.id %}" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+  </div>
+{% endfor %}
+ </div>
+
+</div>
+{% endblock %}
